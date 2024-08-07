@@ -49,4 +49,23 @@ On your PC, bozo.
 ## installation:
 Download or clone the clinews.py script to your local drive.
 
-You need to have Python installed. Then install the requests library using: pip install requests
+You need to have Python installed.
+
+Then install the requests library using: ```pip install requests```
+
+## How to use
+
+To fetch the latest headlines: ```python clinews.py latest```
+
+To Search for News: ```python clinews.py search "topic"```
+
+To save a story: ```python clinews.py save <story_id>```
+
+To list all saved stories: ```python clinews.py saved```
+
+To stalk someone: ```python clinews.py user <username>```
+
+The rest is logged here: ```python clinews.py help```
+
+## Who? 
+Gimmick you! stalking other user's info..

@@ -4,7 +4,7 @@ It is a simple CMD tool to interact with Hacker News. It allows you to fetch and
 ## Why?
 Yes.
 
-## (Useful) features:
+## (Useless) features:
 **Fetch Headlines**: View the very most recent headlines from Hacker News.
 
 **View Top Stories**: You can display the top stories currently trending on Hacker News (hopefully this is one of them).

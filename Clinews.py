@@ -6,6 +6,8 @@ import os
 BASE_URL = 'https://hacker-news.firebaseio.com/v0/'
 HEADERS = {'User-Agent': 'CliNews/1.0'}
 
+#Average code below
+
 def fetch_data(endpoint):
     url = f"{BASE_URL}{endpoint}.json?print=pretty"
     response = requests.get(url, headers=HEADERS)
@@ -51,7 +53,7 @@ def fetch_user_activity(username):
             story = fetch_story(item_id)
             print_story(story)
     else:
-        print("User not found.")
+        print("User non-existent.")
 
 def save_story(story_id):
     saved_stories_file = 'saved_stories.json'
@@ -93,11 +95,11 @@ def delete_saved_story(story_id):
         else:
             print(f"Story {story_id} not found in saved stories.")
     else:
-        print("No saved stories found.")
+        print("No saved stories found (Not my problem).")
 
 def main():
     parser = argparse.ArgumentParser(description='CLI News Aggregator for Hacker News.')
-    parser.add_argument('command', choices=['latest', 'top', 'new', 'best', 'ask', 'show', 'jobs', 'details', 'user', 'comments', 'user-comments', 'user-submissions', 'user-activity', 'save', 'saved', 'delete', 'subscribe', 'unsubscribe', 'help'], help='Command to execute.')
+    parser.add_argument('command', choices=['latest', 'top', 'new', 'ask', 'show', 'jobs', 'user', 'comments', 'user-comments', 'user-submissions', 'user-activity', 'save', 'saved', 'delete', 'help'], help='Command to execute.')
     parser.add_argument('arg', nargs='?', help='Argument for the command.')
 
     args = parser.parse_args()
@@ -112,10 +114,6 @@ def main():
             print_story(story)
     elif args.command == 'new':
         stories = fetch_stories('new')
-        for story in stories:
-            print_story(story)
-    elif args.command == 'best':
-        stories = fetch_stories('best')
         for story in stories:
             print_story(story)
     elif args.command == 'ask':
@@ -135,7 +133,7 @@ def main():
             story = fetch_story(args.arg)
             print_story(story)
         else:
-            print("Story ID is required.")
+            print("Try again with a story ID, idiota!")
     elif args.command == 'user':
         if args.arg:
             user = fetch_user(args.arg)
@@ -145,9 +143,9 @@ def main():
                 print(f"Karma: {user.get('karma')}")
                 print("-" * 40)
             else:
-                print("User not found.")
+                print("Stalked user not found anywhere.")
         else:
-            print("Username is required.")
+            print("You're trying? Without a username?.")
     elif args.command == 'comments':
         if args.arg:
             fetch_comments(args.arg)
@@ -166,19 +164,19 @@ def main():
                             print(comment.get('text'))
                             print("-" * 40)
             else:
-                print("User not found.")
+                print("Stalked user un-found lol.")
         else:
-            print("Username is required.")
+            print("You're trying? Without a username?.")
     elif args.command == 'user-submissions':
         if args.arg:
             fetch_user_activity(args.arg)
         else:
-            print("Username is required.")
+            print("You're trying? Without a username?.")
     elif args.command == 'user-activity':
         if args.arg:
             fetch_user_activity(args.arg)
         else:
-            print("Username is required.")
+            print("You're trying? Without a username?.")
     elif args.command == 'save':
         if args.arg:
             save_story(args.arg)
@@ -190,17 +188,8 @@ def main():
         if args.arg:
             delete_saved_story(args.arg)
         else:
-            print("Story ID is required.")
-    elif args.command == 'subscribe':
-        if args.arg:
-            print(f"Subscribed to stories related to: {args.arg}")
-        else:
-            print("Topic is required.")
-    elif args.command == 'unsubscribe':
-        if args.arg:
-            print(f"Unsubscribed from stories related to: {args.arg}")
-        else:
-            print("Topic is required.")
+            print("Think again (Story ID is required).")
+            print("Rethink your life (Aka= Topic is required).")
     elif args.command == 'help':
         parser.print_help()
 
